@@ -27,3 +27,9 @@ module "ecs" {
   target_group_arn      = module.alb.target_group_arn
   listener_dependency   = module.alb.listener_arn
 }
+
+# ---------- Call the IAM (GitHub OIDC) module ----------
+module "iam" {
+  source      = "./modules/iam"
+  github_repo = "saidspace/aws-ecs-project"
+}

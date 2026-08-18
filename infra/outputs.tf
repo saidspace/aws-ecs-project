@@ -8,3 +8,7 @@ output "ecs_cluster" {
   description = "Name of the ECS cluster"
   value       = module.ecs.cluster_name
 }
+
+output "github_actions_role_arn" {
+  value = module.iam.role_arn
+}
