@@ -1,7 +1,12 @@
-# ---------- Values this ALB module hands back ---------- 
+# ---------- Values this ALB module hands back ----------
 output "alb_dns_name" {
   description = "Public DNS name of the load balancer (the live URL)"
   value       = aws_lb.main.dns_name
+}
+
+output "alb_zone_id" {
+  description = "AWS-managed zone ID of the load balancer (needed for a Route 53 alias record)"
+  value       = aws_lb.main.zone_id
 }
 
 output "target_group_arn" {
@@ -15,6 +20,6 @@ output "ecs_security_group_id" {
 }
 
 output "listener_arn" {
-  description = "ARN of the ALB listener (used for ECS dependency ordering)"
-  value       = aws_lb_listener.http.arn
+  description = "ARN of the HTTPS listener (used for ECS dependency ordering, since it's the one forwarding to the target group)"
+  value       = aws_lb_listener.https.arn
 }

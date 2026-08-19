@@ -33,7 +33,7 @@ resource "aws_subnet" "public_a" {
 resource "aws_subnet" "public_b" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = "10.0.2.0/24"
-  availability_zone       = var.azs[1]       # 2nd subnet in 2nd AZ for increased resilience
+  availability_zone       = var.azs[1] # 2nd subnet in 2nd AZ for increased resilience
   map_public_ip_on_launch = true
 
   tags = {

@@ -5,8 +5,8 @@ variable "vpc_cidr" {
 }
 
 variable "azs" {
-    description = "The 2 Availability Zones to place subnets in"
-    type        = list(string)
+  description = "The 2 Availability Zones to place subnets in"
+  type        = list(string)
 
 
 }

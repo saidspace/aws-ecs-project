@@ -16,6 +16,7 @@ module "alb" {
   source            = "./modules/alb"
   vpc_id            = module.vpc.vpc_id
   public_subnet_ids = module.vpc.public_subnet_ids
+  certificate_arn   = module.acm.certificate_arn
 }
 
 # ---------- Call the ECS module ----------
@@ -32,4 +33,12 @@ module "ecs" {
 module "iam" {
   source      = "./modules/iam"
   github_repo = "saidspace/aws-ecs-project"
+}
+
+# ---------- Call the ACM (certificate) module ----------
+module "acm" {
+  source       = "./modules/acm"
+  domain_name  = var.domain_name
+  alb_dns_name = module.alb.alb_dns_name
+  alb_zone_id  = module.alb.alb_zone_id
 }
